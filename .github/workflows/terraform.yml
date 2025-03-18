@@ -8,42 +8,46 @@ on:
     branches:
       - main18marchbkp
 
+permissions:
+  contents: read
+
 jobs:
   terraform:
     name: Terraform Workflow
     runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
 
     env:
-      # Environment variables for Terraform
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
-      # Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Setup Terraform CLI
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0
 
-      # Initialize Terraform
       - name: Terraform Init
         run: terraform init
 
-      # Validate Terraform configuration
+      - name: Terraform Format
+        run: terraform fmt -check
+
       - name: Terraform Validate
         run: terraform validate
 
-      # Plan Terraform changes
       - name: Terraform Plan
         run: terraform plan -out=tfplan
 
-      # Apply Terraform changes (only on push to main)
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main18marchbkp' && github.event_name == 'push'
         run: terraform apply -auto-approve tfplan
