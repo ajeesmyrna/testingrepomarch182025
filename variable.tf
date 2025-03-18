@@ -18,7 +18,7 @@ variable "tenant_id" {
   type        = string
 }
 
-/*variable "resource_group_name" {
+variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
 }
@@ -28,6 +28,7 @@ variable "location" {
   type        = string
 }
 
+/*
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
