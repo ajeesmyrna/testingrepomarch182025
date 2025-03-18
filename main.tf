@@ -2,7 +2,7 @@
 
 # Create a resource group
 resource "azurerm_resource_group" "example" {
-  name     = "examplemar-resources"
+  name     = "examplemar1-resources"
   location = "East US"
 }
 
