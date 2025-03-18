@@ -41,7 +41,7 @@ jobs:
 
       # Plan Terraform changes
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -var-file= variable.tf -out=tfplan
 
       # Apply Terraform changes (only on push to main)
       - name: Terraform Apply
