@@ -27,7 +27,7 @@ variable "location" {
   description = "The location/region where the resources will be created"
   type        = string
 }
-
+/*
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
@@ -48,7 +48,7 @@ variable "subnet_address_prefix" {
   type        = string
 }
 
-/*#
+#
 variable "nic_name" {
   description = "The name of the network interface"
   type        = string

@@ -6,6 +6,7 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
+/*
 # Create a virtual network
 resource "azurerm_virtual_network" "example" {
   name                = var.vnet_name
@@ -22,7 +23,7 @@ resource "azurerm_subnet" "example" {
   address_prefixes     = [var.subnet_address_prefix]
 }
 
-/*
+
 # Create a network interface
 resource "azurerm_network_interface" "example" {
   name                = var.nic_name
