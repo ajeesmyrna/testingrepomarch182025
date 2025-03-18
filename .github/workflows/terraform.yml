@@ -20,7 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
-
+     
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -28,6 +28,13 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
+      - name: Debug Environment Variables
+        run: |
+            if [ -z "${{ secrets.ARM_CLIENT_ID }}" ]; then echo "ARM_CLIENT_ID is not set"; else echo "ARM_CLIENT_ID is set"; fi
+            if [ -z "${{ secrets.ARM_CLIENT_SECRET }}" ]; then echo "ARM_CLIENT_SECRET is not set"; else echo "ARM_CLIENT_SECRET is set"; fi
+            if [ -z "${{ secrets.ARM_SUBSCRIPTION_ID }}" ]; then echo "ARM_SUBSCRIPTION_ID is not set"; else echo "ARM_SUBSCRIPTION_ID is set"; fi
+            if [ -z "${{ secrets.ARM_TENANT_ID }}" ]; then echo "ARM_TENANT_ID is not set"; else echo "ARM_TENANT_ID is set"; fi
+
       - name: Checkout Code
         uses: actions/checkout@v3
 
