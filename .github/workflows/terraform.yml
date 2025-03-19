@@ -51,12 +51,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
-
-      - name: Manual Approval
-        uses: hmarr/auto-approve-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
+        
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main18marchbkp' && github.event_name == 'push'
         run: terraform apply -auto-approve tfplan
